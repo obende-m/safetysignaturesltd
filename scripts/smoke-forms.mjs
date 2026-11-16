@@ -176,6 +176,26 @@ try {
   await submitAndWait();
   const cvErrors = await errorsShown();
   check("careers: a fake PDF is rejected by the file check", cvErrors.some((e) => /PDF, DOC or DOCX/.test(e)), (cvErrors.join("; ") || (await alertText())).slice(0, 120));
+
+  // A genuine (minimal) PDF must either be saved with the application or fail with a clear message.
+  const real = join(profile, "smoke-test-cv.pdf");
+  writeFileSync(
+    real,
+    "%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n2 0 obj<</Type/Pages/Kids[3 0 R]/Count 1>>endobj\n" +
+      "3 0 obj<</Type/Page/Parent 2 0 R/MediaBox[0 0 200 200]>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n",
+  );
+  const doc2 = await send("DOM.getDocument");
+  const cvNode = await send("DOM.querySelector", { nodeId: doc2.root.nodeId, selector: "#cv" });
+  await send("DOM.setFileInputFiles", { nodeId: cvNode.nodeId, files: [real] });
+  await submitAndWait();
+  const appOutcome = await alertText();
+  const appSaved = /application is in|received|thank/i.test(appOutcome) && !/could not|went wrong|not connected/i.test(appOutcome);
+  const appHonest = /not connected|could not|went wrong/i.test(appOutcome);
+  check(
+    "careers: a real PDF application either saves or reports a clear failure",
+    appSaved || appHonest,
+    appSaved ? "saved to database" : (appOutcome || (await errorsShown()).join("; ")).slice(0, 120),
+  );
 } catch (err) {
   console.error(err);
   results.push({ name: "script", ok: false });

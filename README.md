@@ -40,7 +40,8 @@ Useful scripts:
 ## Set up Supabase
 
 1. Create a Supabase project. A region close to Nigeria (for example `eu-west`) keeps latency down.
-2. In **SQL Editor**, run `supabase/migrations/20261116000000_init.sql`, then `supabase/seed.sql`.
+2. In **SQL Editor**, run `supabase/migrations/20261116000000_init.sql`, then `supabase/migrations/20261116000001_grants.sql`, then `supabase/seed.sql`.
+   The second file grants the API roles access to the tables; newer Supabase projects no longer do this automatically.
    (Or with the Supabase CLI: `supabase link` then `supabase db push`, then run the seed.)
    This creates the tables, Row Level Security policies, the private `applications` storage bucket and the retention function.
 3. **Authentication → Providers → Email:** keep email sign-in on. Turn **off** "Allow new users to sign up": staff accounts are created by an administrator only.

@@ -52,14 +52,19 @@ Status as of 16 November 2026.
 - [x] Copy lint on 12 pages: 0 FAIL (WARNs kept: eyebrow labels and step numbers are part of the design)
 - [x] Screenshots reviewed at 1440 px (all pages) and 390 px (home, contact)
 - [x] Performance (production homepage): layout shift 0.000, LCP about 0.9 s on CPU, 740 KB total transfer
-- [ ] **Not yet tested: saving to a real database, CV upload to storage, admin sign-in and editing.** These need a Supabase project; no credentials were supplied and Docker (for a local Supabase) is not available on this machine.
+- [x] Against the live Supabase project (production build, local server), 16 November 2026:
+  - form test **6/6**: an enquiry and an application with a real PDF CV are saved; rows and the stored file checked directly in the database;
+  - admin test **10/10**: wrong password refused, sign-in, enquiries and applications listed, CV opens through a 60-second signed link (and is refused without a session), an article saves, test records deleted from the admin (rows and CV files confirmed gone), sign-out closes the admin.
+  - Bugs found and fixed: missing table grants (new migration `20261116000001_grants.sql`), public read policies that visitors could not evaluate, an empty article list being cached after a database error, and admin session checks running during prerender.
 - [ ] Tablet widths (768, 1024) and other pages at 390 px reviewed by screenshot
 - [ ] Manual check in Safari (iOS) and Firefox
 
 ## Stage 7: Deployment preparation
 
 - [x] `.env.example` and setup steps ([README.md](README.md))
-- [ ] Create the Supabase project, run the migration and seed, create the first admin
+- [x] Create the Supabase project, run the migrations and seed, create the first admin
+- [ ] Turn off "Allow new users to sign up" (Authentication → Sign In / Providers)
+- [ ] Rotate the secret key and database password (they were shared in a chat), then update `.env.local` and Vercel
 - [ ] Add environment variables in Vercel and deploy
 - [ ] Point the domain at Vercel; set `NEXT_PUBLIC_SITE_URL`
 - [ ] Post-deploy check: test enquiry, test application, CV download, delete test records

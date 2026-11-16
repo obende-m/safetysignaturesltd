@@ -63,8 +63,9 @@ export async function getArticles(kind: "media" | "insight"): Promise<Article[]>
     .order("published_at", { ascending: false });
 
   if (error) {
-    console.error("[content] Failed to load articles:", error.message);
-    return [];
+    // Keep the site readable during a database problem: show the launch articles that ship with the code.
+    console.error("[content] Failed to load articles, showing the built-in copy:", error.message);
+    return [...(kind === "media" ? seedMedia : seedInsights)].sort(byDateDesc);
   }
   return (data as ArticleRow[]).map(toArticle);
 }
