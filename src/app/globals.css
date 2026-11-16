@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+/*
+  Safety Signatures design tokens.
+  Brand colours are sampled from the official logo file (safety_logo.png):
+  red #DA251D and navy #183884. Everything else is a neutral built around them.
+*/
+@theme {
+  --color-ink: #0b1430;
+  --color-ink-soft: #16213f;
+  --color-navy: #183884;
+  --color-navy-deep: #10275f;
+  --color-red: #da251d;
+  --color-red-deep: #b81d16;
+  --color-paper: #f6f3ee;
+  --color-sand: #ebe5da;
+  --color-line: #d8d1c4;
+  --color-line-dark: #2a3556;
+  --color-mute: #565d70;
+  --color-mute-dark: #a9b0c4;
+
+  --font-display: var(--font-fraunces), "Times New Roman", serif;
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-xs: 26rem;
+}
+
+:root {
+  --nav-h: 76px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --wrap: 1320px;
+  color-scheme: light;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-navy);
+  color: #fff;
+}
+
+@layer components {
+/* One content edge for the whole site: every section's .wrap shares these lines. */
+.wrap {
+  width: 100%;
+  max-width: calc(var(--wrap) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.display {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-weight: 380;
+  letter-spacing: -0.022em;
+  line-height: 1.02;
+}
+
+.t-hero { font-size: clamp(2.5rem, 5.1vw, 5.1rem); line-height: 1; }
+.t-1 { font-size: clamp(2.4rem, 5.2vw, 4.75rem); }
+.t-2 { font-size: clamp(2rem, 3.8vw, 3.4rem); line-height: 1.05; }
+.t-3 { font-size: clamp(1.45rem, 2.1vw, 1.9rem); line-height: 1.15; }
+
+.lead { font-size: clamp(1.075rem, 1.35vw, 1.25rem); line-height: 1.6; }
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--color-mute);
+}
+.eyebrow::before {
+  content: "";
+  width: 1.5rem;
+  height: 2px;
+  background: var(--color-red);
+}
+.on-dark .eyebrow { color: var(--color-mute-dark); }
+
+/* Buttons: one solid, one outline. They step on hover and press on click. */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  font-weight: 550;
+  font-size: 0.975rem;
+  letter-spacing: -0.005em;
+  transition:
+    transform 0.35s var(--ease-out-soft),
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.35s var(--ease-out-soft);
+  will-change: transform;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); transition-duration: 0.08s; }
+.btn .btn-arrow { transition: transform 0.35s var(--ease-out-soft); }
+.btn:hover .btn-arrow { transform: translateX(3px); }
+
+.btn-primary {
+  background: var(--color-red);
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 8px 24px -12px rgba(218, 37, 29, 0.55);
+}
+.btn-primary:hover { background: var(--color-red-deep); box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 14px 30px -14px rgba(218, 37, 29, 0.7); }
+
+.btn-outline {
+  border: 1px solid currentColor;
+  color: var(--color-ink);
+}
+.btn-outline:hover { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+.on-dark .btn-outline { color: var(--color-paper); }
+.on-dark .btn-outline:hover { background: var(--color-paper); color: var(--color-ink); border-color: var(--color-paper); }
+
+/* Text links draw their underline on hover. */
+.link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.45s var(--ease-out-soft);
+  padding-bottom: 2px;
+}
+.link-draw:hover, .link-draw:focus-visible { background-size: 100% 1px; }
+
+/* Photographs zoom slightly inside their frame on hover. */
+.photo-frame { overflow: hidden; position: relative; background: var(--color-sand); }
+.photo-frame img { transition: transform 0.9s var(--ease-out-soft); }
+.group:hover .photo-frame img, .photo-frame:hover img { transform: scale(1.03); }
+
+.card-lift { transition: transform 0.45s var(--ease-out-soft), box-shadow 0.45s var(--ease-out-soft); }
+.card-lift:hover { transform: translateY(-2px); }
+
+:focus-visible {
+  outline: 2px solid var(--color-red);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: fixed;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+}
+.skip-link:focus { top: 16px; }
+
+/* Article body typography for Security Insights. */
+.prose-ss { font-size: 1.0625rem; line-height: 1.75; color: #22283a; }
+.prose-ss > * + * { margin-top: 1.15em; }
+.prose-ss h2 {
+  font-family: var(--font-display);
+  font-variation-settings: "opsz" 72;
+  font-weight: 420;
+  font-size: 1.65rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-top: 2em;
+  color: var(--color-ink);
+}
+.prose-ss ul { padding-left: 1.2rem; list-style: none; }
+.prose-ss li { position: relative; padding-left: 0.4rem; }
+.prose-ss li + li { margin-top: 0.5em; }
+.prose-ss li::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem;
+  top: 0.78em;
+  width: 0.55rem;
+  height: 2px;
+  background: var(--color-red);
+}
+
+/* Form fields */
+.field-label { display: block; font-size: 0.875rem; font-weight: 550; margin-bottom: 0.45rem; }
+.field {
+  width: 100%;
+  min-height: 50px;
+  border: 1px solid var(--color-line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  color: var(--color-ink);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.field:hover { border-color: #b9b0a0; }
+.field:focus { outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 4px rgba(24, 56, 132, 0.14); }
+.field[aria-invalid="true"] { border-color: var(--color-red); }
+textarea.field { min-height: 150px; resize: vertical; line-height: 1.55; }
+select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230b1430' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+.field-error { color: var(--color-red-deep); font-size: 0.85rem; margin-top: 0.4rem; }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
