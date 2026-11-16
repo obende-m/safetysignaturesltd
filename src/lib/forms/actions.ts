@@ -19,7 +19,7 @@ const values = (formData: FormData, keys: string[]) =>
   Object.fromEntries(keys.map((k) => [k, String(formData.get(k) ?? "")]));
 
 export async function submitEnquiry(_prev: FormState, formData: FormData): Promise<FormState> {
-  const keep = values(formData, ["fullName", "organisation", "email", "phone", "service", "location", "message"]);
+  const keep = values(formData, ["fullName", "organisation", "email", "phone", "service", "location", "message", "consent"]);
 
   // Bots get the same reply as people so the check cannot be probed, but nothing is stored.
   if (looksAutomated(formData)) {
@@ -89,6 +89,7 @@ export async function submitApplication(_prev: FormState, formData: FormData): P
     "experienceYears",
     "previousService",
     "coverNote",
+    "consent",
   ]);
 
   if (looksAutomated(formData)) {

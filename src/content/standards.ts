@@ -73,7 +73,7 @@ export const approachSteps = [
   },
   {
     title: "Deploy and report",
-    body: "Officers keep logs and write occurrence reports, and larger posts are led by a Guard Force Commander.",
+    body: "Officers keep logs and write occurrence reports, and a Platinum officer can lead the post as Guard Force Commander.",
   },
 ] as const;
 

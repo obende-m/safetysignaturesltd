@@ -42,7 +42,7 @@ export const services: Service[] = [
       { title: "Patrols the perimeter", body: "Set patrol routes and times, with lights, fences, doors and locks checked on every round." },
       { title: "Keeps inventory and asset logs", body: "Records of goods, keys and equipment moving through the site." },
       { title: "Reports every incident", body: "Written occurrence reports so the client sees what happened, when and what was done." },
-      { title: "Puts a commander on larger posts", body: "A Guard Force Commander from the Platinum tier leads the officers on bigger deployments." },
+      { title: "Provides a Guard Force Commander", body: "A Platinum officer can serve as Guard Force Commander, leading the officers on the post." },
     ],
     image: "guardsLineUp",
     related: ["risk-assessment-consultancy", "security-equipment-technology", "event-security"],
@@ -230,3 +230,6 @@ export const services: Service[] = [
 
 export const publishedServices = services.filter((s) => s.published);
 export const getService = (slug: string) => publishedServices.find((s) => s.slug === slug);
+
+/** Service name for use mid-sentence ("our event security"), keeping K9 in capitals. */
+export const inSentence = (name: string) => name.toLowerCase().replace(/\bk9\b/g, "K9");

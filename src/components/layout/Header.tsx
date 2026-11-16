@@ -27,10 +27,12 @@ export function Header() {
   }, []);
 
   // Close menus whenever the route changes.
-  useEffect(() => {
+  const [seenPath, setSeenPath] = useState(pathname);
+  if (pathname !== seenPath) {
+    setSeenPath(pathname);
     setOpen(null);
     setMobileOpen(false);
-  }, [pathname]);
+  }
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
