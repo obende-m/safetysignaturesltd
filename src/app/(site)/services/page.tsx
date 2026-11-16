@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero, SectionHead, TierLadder } from "@/components/sections/Blocks";
 import { Arrow } from "@/components/ui/Buttons";
@@ -26,12 +26,12 @@ export default function ServicesPage() {
       {/* Core service, presented large */}
       <section className="pb-24 md:pb-32">
         <div className="wrap">
-          <Link href={`/services/${core.slug}`} className="group grid overflow-hidden rounded-[28px] bg-ink text-paper lg:grid-cols-12">
+          <Link href={`/services/${core.slug}`} className="group grid overflow-hidden rounded-[24px] bg-ink text-paper lg:grid-cols-12">
             <ImageReveal className="photo-frame relative aspect-[16/10] lg:col-span-7 lg:aspect-auto lg:min-h-[520px]">
               {core.image && <Photo name={core.image} sizes="(min-width: 1024px) 58vw, 100vw" />}
             </ImageReveal>
             <div className="flex flex-col p-8 md:p-12 lg:col-span-5">
-              <p className="font-mono text-xs text-mute-dark">01 · Core service</p>
+              <p className="font-mono text-xs text-mute-dark">01 Â· Core service</p>
               <h2 className="display t-2 mt-6">{core.name}</h2>
               <p className="mt-5 leading-relaxed text-mute-dark">{core.intro}</p>
               <span className="mt-auto inline-flex items-center gap-2 pt-10 font-[560]">
@@ -43,7 +43,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="band bg-sand py-24 md:py-32">
         <div className="wrap">
           <SectionHead eyebrow="More services" title="Services that extend the guard force" />
           <ul className="mt-14 grid gap-x-8 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
@@ -73,7 +73,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="on-dark bg-navy-deep text-paper">
+      <section className="band on-dark bg-navy-deep text-paper">
         <div className="wrap py-24 md:py-32">
           <SectionHead
             dark

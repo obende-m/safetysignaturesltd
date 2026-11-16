@@ -10,7 +10,10 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         Skip to content
       </a>
       <Header />
-      {children}
+      {/* No page transition: a new page appears at once; its sections animate as they scroll in. */}
+      <main id="main" tabIndex={-1} className="outline-none">
+        {children}
+      </main>
       <Footer />
       <JsonLd data={organizationJsonLd()} />
     </MotionConfig>

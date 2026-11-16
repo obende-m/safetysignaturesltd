@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -51,7 +51,7 @@ export function ServiceIndex({ items, fallback }: { items: Item[]; fallback: Ima
       </ol>
 
       <div className="relative hidden lg:col-span-5 lg:block">
-        <div className="sticky top-[calc(var(--nav-h)+2rem)] aspect-[4/5] overflow-hidden rounded-[28px] bg-sand">
+        <div className="sticky top-[calc(var(--nav-h)+2rem)] aspect-[4/5] overflow-hidden rounded-[24px] bg-sand">
           <AnimatePresence initial={false}>
             <motion.div
               key={current}

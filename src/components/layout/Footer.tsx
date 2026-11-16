@@ -12,7 +12,7 @@ export function Footer() {
   const socials = confirmedSocials();
 
   return (
-    <footer className="border-t border-line bg-paper">
+    <footer className="bg-paper">
       <div className="wrap grid gap-12 py-16 md:grid-cols-12 md:py-20">
         <div className="md:col-span-4">
           <Logo />

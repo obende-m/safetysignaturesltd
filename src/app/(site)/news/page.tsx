@@ -1,4 +1,4 @@
-import { ImageReveal, Reveal } from "@/components/motion/Reveal";
+﻿import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, MediaList, PageHero, SectionHead } from "@/components/sections/Blocks";
 import { ExternalArrow } from "@/components/ui/Buttons";
 import { Photo } from "@/components/ui/Photo";
@@ -52,11 +52,11 @@ export default async function NewsPage() {
       {/* Regulatory visit, featured */}
       <section className="pb-24 md:pb-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
-          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[28px] lg:col-span-7">
+          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[24px] lg:col-span-7">
             <Photo name="nscdcTeam" sizes="(min-width: 1024px) 58vw, 100vw" priority />
           </ImageReveal>
           <div className="lg:col-span-5">
-            <SectionHead eyebrow={`Regulatory visit · ${nscdcVisit.date}`} title="NSCDC Private Guard Companies department visit" lead={nscdcVisit.summary} />
+            <SectionHead eyebrow={`Regulatory visit Â· ${nscdcVisit.date}`} title="NSCDC Private Guard Companies department visit" lead={nscdcVisit.summary} />
             <Reveal delay={0.1} className="mt-8">
               <a href={nscdcVisit.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">Read the {nscdcVisit.source.publication} report</span>

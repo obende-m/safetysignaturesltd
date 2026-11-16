@@ -1,4 +1,4 @@
-import { HeroMedia } from "@/components/motion/HeroEnter";
+﻿import { HeroMedia } from "@/components/motion/HeroEnter";
 import { Reveal } from "@/components/motion/Reveal";
 import { formatDate, PageHero, SectionHead } from "@/components/sections/Blocks";
 import { ApplicationForm } from "@/components/forms/ApplicationForm";
@@ -24,7 +24,7 @@ export default async function CareersPage() {
         title="Join the Safety Signatures guard force"
         lead="We recruit security officers, supervisors and drivers who are disciplined, honest and good with people, then train them to our own curriculum and look after them while they serve."
         aside={
-          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-sand">
+          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-sand">
             <Photo name="guardsFormation" sizes="(min-width: 1024px) 40vw, 100vw" priority />
           </HeroMedia>
         }
@@ -37,10 +37,10 @@ export default async function CareersPage() {
       </PageHero>
 
       {/* Welfare */}
-      <section className="on-dark bg-ink text-paper">
+      <section className="band on-dark bg-ink text-paper">
         <div className="wrap py-24 md:py-32">
           <SectionHead dark eyebrow="Welfare" title="What we offer our officers" lead="Commitments every officer can count on once they join." />
-          <ul className="mt-14 grid gap-px overflow-hidden rounded-[28px] bg-line-dark sm:grid-cols-2 lg:grid-cols-5">
+          <ul className="mt-14 grid gap-px overflow-hidden rounded-[24px] bg-line-dark sm:grid-cols-2 lg:grid-cols-5">
             {welfare.map((w) => (
               <li key={w.title} className="bg-ink-soft p-7">
                 <h3 className="display text-[1.5rem]">{w.title}</h3>
@@ -75,7 +75,7 @@ export default async function CareersPage() {
       </section>
 
       {/* Vacancies */}
-      <section className="bg-white py-24 md:py-32">
+      <section className="band bg-sand py-24 md:py-32">
         <div className="wrap">
           <SectionHead eyebrow="Vacancies" title="Open positions" />
           {vacancies.length === 0 ? (
@@ -92,8 +92,8 @@ export default async function CareersPage() {
                   <div className="md:col-span-5">
                     <h3 className="display text-[1.8rem] leading-tight">{v.title}</h3>
                     <p className="mt-2 font-mono text-xs text-mute">
-                      {v.location} · {v.employmentType}
-                      {v.closingDate ? ` · Closes ${formatDate(v.closingDate)}` : ""}
+                      {v.location} Â· {v.employmentType}
+                      {v.closingDate ? ` Â· Closes ${formatDate(v.closingDate)}` : ""}
                     </p>
                   </div>
                   <div className="md:col-span-7">

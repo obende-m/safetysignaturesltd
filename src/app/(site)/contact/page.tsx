@@ -1,3 +1,4 @@
+﻿import Link from "next/link";
 import { Suspense } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
@@ -32,7 +33,13 @@ export default function ContactPage() {
       <div className="wrap grid gap-14 pb-24 pt-14 md:pb-32 md:pt-20 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-12">
         <div className="order-1 lg:col-span-5 lg:row-start-1">
           <Reveal>
-            <p className="eyebrow">Contact</p>
+            <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-[0.85rem] text-mute">
+              <Link href="/" className="inline-flex min-h-10 items-center font-[550] text-ink/70 transition-colors hover:text-navy">
+                Home
+              </Link>
+              <span aria-hidden="true">/</span>
+              <span className="eyebrow">Contact</span>
+            </nav>
             <h1 className="display t-1 mt-6 max-w-[14ch]">Request a security consultation</h1>
             <p className="lead mt-7 max-w-[46ch] text-mute">
               Tell us about the site, event or person you need protected. We will get back to you to arrange an
@@ -134,7 +141,7 @@ export default function ContactPage() {
         </div>
 
         <Reveal className="order-2 lg:col-span-7 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-start" delay={0.05}>
-          <div className="rounded-[28px] border border-line bg-white p-6 sm:p-8 md:p-12">
+          <div className="rounded-[24px] border border-line bg-white p-6 sm:p-8 md:p-12">
             <h2 className="display text-[1.9rem] leading-tight">Your consultation request</h2>
             <p className="mt-2 text-mute">All fields are required unless marked optional.</p>
             <div className="mt-10">

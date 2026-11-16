@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { startTransition, useEffect, useRef, useState, type ReactNode } from "react";
 import { useFormStatus } from "react-dom";
@@ -109,7 +109,7 @@ export function SuccessPanel({ title, message, children }: { title: string; mess
     ref.current?.focus();
   }, []);
   return (
-    <div ref={ref} tabIndex={-1} role="status" className="rounded-[28px] bg-ink p-8 text-paper outline-none md:p-12">
+    <div ref={ref} tabIndex={-1} role="status" className="rounded-[24px] bg-ink p-8 text-paper outline-none md:p-12">
       <span className="flex h-12 w-12 items-center justify-center rounded-full bg-red" aria-hidden="true">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
           <path d="M4 10.5l4 4 8-9" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

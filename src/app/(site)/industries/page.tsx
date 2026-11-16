@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { HeroMedia } from "@/components/motion/HeroEnter";
 import { Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero } from "@/components/sections/Blocks";
@@ -22,13 +22,13 @@ export default function IndustriesPage() {
         title="Security services for the organisations we protect"
         lead="Each kind of organisation has its own exposure and routines. Here is how our services apply to the most common ones."
         aside={
-          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-sand">
+          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-sand">
             <Photo name="vehicleSearch" sizes="(min-width: 1024px) 40vw, 100vw" priority />
           </HeroMedia>
         }
       />
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="py-24 md:py-32">
         <div className="wrap">
           <h2 className="sr-only">Industries</h2>
           <ul className="border-t border-line">

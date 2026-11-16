@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { HeroMedia } from "@/components/motion/HeroEnter";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero, SectionHead } from "@/components/sections/Blocks";
@@ -23,13 +23,13 @@ export default function TrainingPage() {
         title="Training every officer to a written curriculum"
         lead={`Our officers train to a ${curriculumModuleTotal}-module curriculum before and during deployment. It covers the law and conduct of guarding, prevention and control, emergencies, and the records that make a post accountable.`}
         aside={
-          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-sand">
+          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-sand">
             <Photo name="guardsParade" sizes="(min-width: 1024px) 40vw, 100vw" priority />
           </HeroMedia>
         }
       />
 
-      <section className="on-dark bg-ink text-paper">
+      <section className="band on-dark bg-ink text-paper">
         <div className="wrap py-24 md:py-32">
           <SectionHead
             dark
@@ -37,7 +37,7 @@ export default function TrainingPage() {
             title="What our officers are trained in"
             lead={`${listed} of the ${curriculumModuleTotal} modules, grouped by what they prepare an officer for.`}
           />
-          <div className="mt-16 grid gap-px overflow-hidden rounded-[28px] bg-line-dark md:grid-cols-2">
+          <div className="mt-16 grid gap-px overflow-hidden rounded-[24px] bg-line-dark md:grid-cols-2">
             {curriculum.map((group, gi) => (
               <Reveal key={group.theme} delay={gi * 0.06} className="bg-ink-soft p-8 md:p-10">
                 <h3 className="display text-[1.9rem] leading-tight">{group.theme}</h3>
@@ -74,13 +74,13 @@ export default function TrainingPage() {
               ))}
             </ul>
           </div>
-          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[28px] lg:col-span-6 lg:aspect-auto">
+          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[24px] lg:col-span-6 lg:aspect-auto">
             <Photo name="guardsHandshake" sizes="(min-width: 1024px) 50vw, 100vw" />
           </ImageReveal>
         </div>
       </section>
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="band bg-sand py-24 md:py-32">
         <div className="wrap">
           <SectionHead
             eyebrow="Development and welfare"
@@ -98,7 +98,7 @@ export default function TrainingPage() {
           <Reveal className="mt-12">
             <Link href="/services/risk-assessment-consultancy" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
               <span className="link-draw">See training for your own security staff</span>
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">â†’</span>
             </Link>
           </Reveal>
         </div>

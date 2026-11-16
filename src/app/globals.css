@@ -1,27 +1,28 @@
-@import "tailwindcss";
+﻿@import "tailwindcss";
 
 /*
   Safety Signatures design tokens.
   Brand colours are sampled from the official logo file (safety_logo.png):
-  red #DA251D and navy #183884. Everything else is a neutral built around them.
+  red #DA251D and navy #183884. Everything else is a cool neutral built around them.
 */
 @theme {
-  --color-ink: #0b1430;
-  --color-ink-soft: #16213f;
+  --color-ink: #0a1330;
+  --color-ink-soft: #131d40;
   --color-navy: #183884;
-  --color-navy-deep: #10275f;
+  --color-navy-deep: #0f2358;
   --color-red: #da251d;
   --color-red-deep: #b81d16;
-  --color-paper: #f6f3ee;
-  --color-sand: #ebe5da;
-  --color-line: #d8d1c4;
-  --color-line-dark: #2a3556;
-  --color-mute: #565d70;
-  --color-mute-dark: #a9b0c4;
+  --color-paper: #ffffff;
+  --color-sand: #f3f5f9;
+  --color-line: #e3e7ef;
+  --color-line-dark: #263257;
+  --color-mute: #5a6275;
+  --color-mute-dark: #9aa4bd;
 
-  --font-display: var(--font-fraunces), "Times New Roman", serif;
-  --font-sans: var(--font-geist), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-inter-tight), "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  /* Small labels use the body face in caps (see .font-mono below), not a monospace. */
+  --font-mono: var(--font-inter), system-ui, sans-serif;
 
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
@@ -32,7 +33,7 @@
 :root {
   --nav-h: 76px;
   --gutter: clamp(16px, 4vw, 48px);
-  --wrap: 1320px;
+  --wrap: 1280px;
   color-scheme: light;
 }
 
@@ -45,7 +46,7 @@ body {
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: "ss01", "cv11";
+  font-feature-settings: "cv11", "ss03";
   text-rendering: optimizeLegibility;
 }
 
@@ -63,37 +64,50 @@ body {
   padding-inline: var(--gutter);
 }
 
+/* Headings: Inter Tight, semibold, tightly tracked. */
 .display {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 144;
-  font-weight: 380;
-  letter-spacing: -0.022em;
-  line-height: 1.02;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 
-.t-hero { font-size: clamp(2.5rem, 5.1vw, 5.1rem); line-height: 1; }
-.t-1 { font-size: clamp(2.4rem, 5.2vw, 4.75rem); }
-.t-2 { font-size: clamp(2rem, 3.8vw, 3.4rem); line-height: 1.05; }
-.t-3 { font-size: clamp(1.45rem, 2.1vw, 1.9rem); line-height: 1.15; }
+.t-hero { font-size: clamp(2.6rem, 5.6vw, 5.25rem); line-height: 1; letter-spacing: -0.037em; }
+.t-1 { font-size: clamp(2.3rem, 4.6vw, 4.1rem); line-height: 1.03; letter-spacing: -0.034em; }
+.t-2 { font-size: clamp(1.9rem, 3.4vw, 3.1rem); line-height: 1.06; }
+.t-3 { font-size: clamp(1.35rem, 1.9vw, 1.7rem); line-height: 1.18; letter-spacing: -0.025em; }
 
-.lead { font-size: clamp(1.075rem, 1.35vw, 1.25rem); line-height: 1.6; }
+.lead { font-size: clamp(1.05rem, 1.25vw, 1.2rem); line-height: 1.65; letter-spacing: -0.006em; }
+
+/* Small caps labels (dates, tiers, field captions). */
+.font-mono {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.02em;
-  color: var(--color-mute);
+  gap: 0.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-navy);
 }
 .eyebrow::before {
   content: "";
-  width: 1.5rem;
-  height: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
   background: var(--color-red);
+  box-shadow: 0 0 0 4px rgba(218, 37, 29, 0.14);
 }
-.on-dark .eyebrow { color: var(--color-mute-dark); }
+.on-dark .eyebrow { color: rgba(255, 255, 255, 0.72); }
 
 /* Buttons: one solid, one outline. They step on hover and press on click. */
 .btn {
@@ -102,12 +116,12 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.6rem;
-  min-height: 48px;
-  padding: 0.85rem 1.4rem;
+  min-height: 50px;
+  padding: 0.85rem 1.5rem;
   border-radius: 999px;
-  font-weight: 550;
-  font-size: 0.975rem;
-  letter-spacing: -0.005em;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
   transition:
     transform 0.35s var(--ease-out-soft),
     background-color 0.25s ease,
@@ -124,17 +138,18 @@ body {
 .btn-primary {
   background: var(--color-red);
   color: #fff;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), 0 8px 24px -12px rgba(218, 37, 29, 0.55);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), 0 10px 26px -12px rgba(218, 37, 29, 0.6);
 }
-.btn-primary:hover { background: var(--color-red-deep); box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 14px 30px -14px rgba(218, 37, 29, 0.7); }
+.btn-primary:hover { background: var(--color-red-deep); box-shadow: 0 1px 0 rgba(0,0,0,.06), 0 16px 32px -14px rgba(218, 37, 29, 0.75); }
 
 .btn-outline {
-  border: 1px solid currentColor;
+  border: 1px solid rgba(10, 19, 48, 0.18);
   color: var(--color-ink);
+  background: rgba(255, 255, 255, 0.6);
 }
-.btn-outline:hover { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
-.on-dark .btn-outline { color: var(--color-paper); }
-.on-dark .btn-outline:hover { background: var(--color-paper); color: var(--color-ink); border-color: var(--color-paper); }
+.btn-outline:hover { background: var(--color-ink); color: #fff; border-color: var(--color-ink); }
+.on-dark .btn-outline { color: #fff; border-color: rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(8px); }
+.on-dark .btn-outline:hover { background: #fff; color: var(--color-ink); border-color: #fff; }
 
 /* Text links draw their underline on hover. */
 .link-draw {
@@ -152,8 +167,18 @@ body {
 .photo-frame img { transition: transform 0.9s var(--ease-out-soft); }
 .group:hover .photo-frame img, .photo-frame:hover img { transform: scale(1.03); }
 
-.card-lift { transition: transform 0.45s var(--ease-out-soft), box-shadow 0.45s var(--ease-out-soft); }
-.card-lift:hover { transform: translateY(-2px); }
+.card-lift { transition: transform 0.45s var(--ease-out-soft), box-shadow 0.45s var(--ease-out-soft), border-color 0.3s ease; }
+.card-lift:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -28px rgba(10, 19, 48, 0.35); }
+
+/* Coloured sections sit inset from the screen edge with rounded corners, like the hero. */
+.band { margin-inline: 8px; border-radius: 28px; overflow: hidden; position: relative; isolation: isolate; }
+.band + .band { margin-top: 8px; }
+@media (min-width: 768px) { .band { margin-inline: 12px; } .band + .band { margin-top: 12px; } }
+
+/* Infinite marquee (homepage service strip). Paused on hover; still for reduced motion. */
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee-track { animation: marquee 48s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
 
 :focus-visible {
   outline: 2px solid var(--color-red);
@@ -174,15 +199,14 @@ body {
 .skip-link:focus { top: 16px; }
 
 /* Article body typography for Security Insights. */
-.prose-ss { font-size: 1.0625rem; line-height: 1.75; color: #22283a; }
+.prose-ss { font-size: 1.0625rem; line-height: 1.75; color: #232a3d; }
 .prose-ss > * + * { margin-top: 1.15em; }
 .prose-ss h2 {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 72;
-  font-weight: 420;
-  font-size: 1.65rem;
+  font-weight: 600;
+  font-size: 1.6rem;
   line-height: 1.2;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.03em;
   margin-top: 2em;
   color: var(--color-ink);
 }
@@ -193,14 +217,15 @@ body {
   content: "";
   position: absolute;
   left: -1.1rem;
-  top: 0.78em;
-  width: 0.55rem;
-  height: 2px;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
   background: var(--color-red);
 }
 
 /* Form fields */
-.field-label { display: block; font-size: 0.875rem; font-weight: 550; margin-bottom: 0.45rem; }
+.field-label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.45rem; }
 .field {
   width: 100%;
   min-height: 50px;
@@ -212,11 +237,11 @@ body {
   color: var(--color-ink);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.field:hover { border-color: #b9b0a0; }
+.field:hover { border-color: #c5ccd9; }
 .field:focus { outline: none; border-color: var(--color-navy); box-shadow: 0 0 0 4px rgba(24, 56, 132, 0.14); }
 .field[aria-invalid="true"] { border-color: var(--color-red); }
 textarea.field { min-height: 150px; resize: vertical; line-height: 1.55; }
-select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230b1430' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
+select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%230a1330' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; }
 .field-error { color: var(--color-red-deep); font-size: 0.85rem; margin-top: 0.4rem; }
 
 }
@@ -228,4 +253,5 @@ select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csv
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .marquee-track { animation: none; }
 }

@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+﻿import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -41,22 +41,29 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
   return (
     <>
       {/* Hero */}
-      <section className="pt-[var(--nav-h)]">
-        <div className="wrap grid gap-10 pb-16 pt-10 md:pb-24 md:pt-16 lg:grid-cols-12 lg:gap-14">
-          <HeroText className="flex flex-col lg:col-span-7">
+      <section className="px-2 pt-[var(--nav-h)] md:px-3">
+        <div className="relative isolate overflow-hidden rounded-[28px] bg-sand">
+        <div
+          className="pointer-events-none absolute -right-32 -top-48 -z-10 h-[520px] w-[620px] rounded-full bg-[#d9e2f5] blur-[100px]"
+          aria-hidden="true"
+        />
+        <div className="wrap grid gap-10 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:items-center lg:gap-14">
+          <HeroText className="flex flex-col lg:col-span-7" delay={0.05}>
             <HeroLine>
-              <nav aria-label="Breadcrumb" className="font-mono text-xs text-mute">
-                <Link href="/services" className="link-draw inline-flex min-h-10 items-center">
+              <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-[0.85rem] text-mute">
+                <Link href="/" className="inline-flex min-h-10 items-center font-[550] text-ink/70 transition-colors hover:text-navy">
+                  Home
+                </Link>
+                <span aria-hidden="true">/</span>
+                <Link href="/services" className="inline-flex min-h-10 items-center font-[550] text-ink/70 transition-colors hover:text-navy">
                   Services
                 </Link>
-                <span className="mx-2" aria-hidden="true">
-                  /
-                </span>
-                <span>{String(index + 1).padStart(2, "0")}</span>
+                <span aria-hidden="true">/</span>
+                <span className="eyebrow">Service {String(index + 1).padStart(2, "0")}</span>
               </nav>
             </HeroLine>
             <HeroLine>
-              <h1 className="display t-1 mt-4 max-w-[16ch] text-balance">{service.name}</h1>
+              <h1 className="display t-1 mt-5 max-w-[16ch] text-balance">{service.name}</h1>
             </HeroLine>
             <HeroLine>
               <p className="lead mt-7 max-w-[54ch] text-mute">{service.intro}</p>
@@ -68,11 +75,11 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
 
           <div className="lg:col-span-5">
             {service.image ? (
-              <HeroMedia className="relative aspect-[4/5] max-h-[620px] w-full overflow-hidden rounded-[28px] bg-sand">
+              <HeroMedia className="relative aspect-[4/5] max-h-[620px] w-full overflow-hidden rounded-[24px] bg-sand">
                 <Photo name={service.image} sizes="(min-width: 1024px) 40vw, 100vw" priority />
               </HeroMedia>
             ) : (
-              <Reveal className="flex h-full flex-col justify-between rounded-[28px] bg-ink p-8 text-paper md:p-10">
+              <Reveal className="flex h-full flex-col justify-between rounded-[24px] bg-ink p-8 text-paper md:p-10">
                 <p className="font-mono text-xs text-mute-dark">Who it is for</p>
                 <ul className="mt-10 space-y-4">
                   {service.audience.map((a) => (
@@ -85,10 +92,11 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
             )}
           </div>
         </div>
+        </div>
       </section>
 
       {/* How we deliver it */}
-      <section className="bg-white py-24 md:py-32">
+      <section className="py-24 md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-6">
             <SectionHead eyebrow="How we deliver it" title={`How we plan ${inSentence(service.name)}`} lead={service.approach} />
@@ -113,7 +121,7 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
       <section className="py-24 md:py-32">
         <div className="wrap">
           <SectionHead eyebrow="What is included" title={`What our ${inSentence(service.name)} covers`} />
-          <ol className="mt-14 grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          <ol className="mt-14 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {service.capabilities.map((c, i) => (
               <li key={c.title} className="bg-paper p-7 md:p-9">
                 <span className="font-mono text-sm text-red">{String(i + 1).padStart(2, "0")}</span>
@@ -126,7 +134,7 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
       </section>
 
       {service.slug === "manned-guarding" && (
-        <section className="on-dark bg-navy-deep text-paper">
+        <section className="band on-dark bg-navy-deep text-paper">
           <div className="wrap py-24 md:py-32">
             <SectionHead
               dark
@@ -143,7 +151,7 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
 
       {/* Related */}
       {related.length > 0 && (
-        <section className="bg-white py-24 md:py-28">
+        <section className="band bg-sand py-24 md:py-28">
           <div className="wrap">
             <SectionHead eyebrow="Related services" title="Services often combined with this one" />
             <ul className="mt-12 border-t border-line">

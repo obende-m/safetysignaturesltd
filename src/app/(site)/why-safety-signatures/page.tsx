@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero, SectionHead, TierLadder } from "@/components/sections/Blocks";
 import { ExternalArrow } from "@/components/ui/Buttons";
@@ -64,7 +64,7 @@ export default function WhyPage() {
 
       <section className="pb-24 md:pb-32">
         <div className="wrap">
-          <ol className="grid gap-px overflow-hidden rounded-[28px] border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
+          <ol className="grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
             {reasons.map((r, i) => (
               <li key={r.title} className="flex flex-col bg-paper p-8 md:p-10">
                 <span className="font-mono text-sm text-red">{String(i + 1).padStart(2, "0")}</span>
@@ -72,7 +72,7 @@ export default function WhyPage() {
                 <p className="mt-4 leading-relaxed text-mute">{r.body}</p>
                 <Link href={r.href} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-6 font-[560] text-navy">
                   <span className="link-draw">{r.link}</span>
-                  <span aria-hidden="true">→</span>
+                  <span aria-hidden="true">â†’</span>
                 </Link>
               </li>
             ))}
@@ -80,10 +80,10 @@ export default function WhyPage() {
         </div>
       </section>
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="band bg-sand py-24 md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
-            <SectionHead eyebrow={`Regulatory visit · ${nscdcVisit.date}`} title="Commended by the regulator" lead={nscdcVisit.summary} />
+            <SectionHead eyebrow={`Regulatory visit Â· ${nscdcVisit.date}`} title="Commended by the regulator" lead={nscdcVisit.summary} />
             <Reveal delay={0.1} className="mt-8">
               <a href={nscdcVisit.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">Read the {nscdcVisit.source.publication} report</span>
@@ -91,13 +91,13 @@ export default function WhyPage() {
               </a>
             </Reveal>
           </div>
-          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[28px] lg:col-span-7">
+          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[24px] lg:col-span-7">
             <Photo name="nscdcTeam" sizes="(min-width: 1024px) 58vw, 100vw" />
           </ImageReveal>
         </div>
       </section>
 
-      <section className="on-dark bg-navy-deep text-paper">
+      <section className="band on-dark bg-navy-deep text-paper">
         <div className="wrap py-24 md:py-32">
           <SectionHead dark eyebrow="Guard tiers" title="Three tiers, chosen by the duties of the post" />
           <div className="mt-14">

@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { HeroMedia } from "@/components/motion/HeroEnter";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero, SectionHead } from "@/components/sections/Blocks";
@@ -28,14 +28,14 @@ export default function AboutPage() {
           </>
         }
         aside={
-          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] bg-sand">
+          <HeroMedia className="relative aspect-[4/5] w-full overflow-hidden rounded-[24px] bg-sand">
             <Photo name="guardsLineUp" sizes="(min-width: 1024px) 40vw, 100vw" priority />
           </HeroMedia>
         }
       />
 
       {/* Mission and vision */}
-      <section className="on-dark bg-ink text-paper">
+      <section className="band on-dark bg-ink text-paper">
         <div className="wrap grid gap-16 py-24 md:py-32 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <p className="eyebrow">Our vision</p>
@@ -63,7 +63,7 @@ export default function AboutPage() {
             title="Four values our officers work by"
             lead="Our mission asks officers to serve with diligence, respect, intelligence and effectiveness. This is what each one means on a post."
           />
-          <ul className="mt-14 grid gap-px overflow-hidden rounded-[28px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-14 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v, i) => (
               <li key={v.title} className="bg-paper p-8">
                 <span className="font-mono text-sm text-red">{String(i + 1).padStart(2, "0")}</span>
@@ -76,9 +76,9 @@ export default function AboutPage() {
       </section>
 
       {/* Operational philosophy */}
-      <section className="bg-white py-24 md:py-32">
+      <section className="band bg-sand py-24 md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
-          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[28px] lg:col-span-6 lg:aspect-auto lg:min-h-[560px]">
+          <ImageReveal className="photo-frame relative aspect-[4/3] rounded-[24px] lg:col-span-6 lg:aspect-auto lg:min-h-[560px]">
             <Photo name="vehicleSearch" sizes="(min-width: 1024px) 50vw, 100vw" />
           </ImageReveal>
           <div className="lg:col-span-6">
@@ -114,7 +114,7 @@ export default function AboutPage() {
             <Reveal delay={0.1} className="mt-8">
               <Link href="/training-standards" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">See our training and standards</span>
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </Link>
             </Reveal>
           </div>
@@ -130,7 +130,7 @@ export default function AboutPage() {
       </section>
 
       {/* Leadership pointer */}
-      <section className="bg-sand py-24 md:py-28">
+      <section className="band bg-sand py-24 md:py-28">
         <div className="wrap grid gap-10 md:grid-cols-12 md:items-center">
           <ImageReveal className="photo-frame relative aspect-square max-w-[320px] rounded-full md:col-span-4">
             <Photo name="ceoPortrait" sizes="320px" />
@@ -144,7 +144,7 @@ export default function AboutPage() {
             <Reveal delay={0.1} className="mt-8">
               <Link href="/leadership" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">Read her profile</span>
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">â†’</span>
               </Link>
             </Reveal>
           </div>

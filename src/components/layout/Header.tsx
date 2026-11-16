@@ -59,23 +59,30 @@ export function Header() {
   };
 
   const isActive = (item: NavItem) =>
-    pathname === item.href ||
-    pathname.startsWith(item.href + "/") ||
-    item.children?.some((c) => pathname === c.href || pathname.startsWith(c.href + "/"));
+    item.href === "/"
+      ? pathname === "/"
+      : pathname === item.href ||
+        pathname.startsWith(item.href + "/") ||
+        item.children?.some((c) => pathname === c.href || pathname.startsWith(c.href + "/"));
+
+  const itemClass = (item: NavItem) =>
+    `flex min-h-10 items-center gap-1.5 rounded-full px-3.5 text-[0.92rem] font-[550] tracking-[-0.01em] transition-all duration-300 ${
+      isActive(item) ? "bg-white text-ink shadow-[0_1px_2px_rgba(10,19,48,0.08),0_4px_12px_-6px_rgba(10,19,48,0.18)]" : "text-ink/70 hover:text-ink"
+    }`;
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color] duration-500 ${
         scrolled || open || mobileOpen
-          ? "border-b border-line/80 bg-paper/92 shadow-[0_10px_30px_-24px_rgba(11,20,48,0.35)] backdrop-blur-xl"
-          : "border-b border-transparent bg-paper"
+          ? "border-b border-line/80 bg-white/85 shadow-[0_10px_30px_-24px_rgba(10,19,48,0.35)] backdrop-blur-xl"
+          : "border-b border-transparent bg-white"
       }`}
     >
       <div className="wrap flex h-[var(--nav-h)] items-center justify-between gap-6">
         <Logo priority />
 
         <nav aria-label="Main" className="hidden lg:block" onMouseLeave={scheduleClose}>
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5 rounded-full border border-line bg-sand/80 p-1">
             {mainNav.map((item) => (
               <li key={item.label} onMouseEnter={() => (item.children ? openMenu(item.label) : setOpen(null))}>
                 {item.children ? (
@@ -84,9 +91,7 @@ export function Header() {
                     aria-expanded={open === item.label}
                     aria-controls={`menu-${item.label}`}
                     onClick={() => setOpen(open === item.label ? null : item.label)}
-                    className={`group flex min-h-11 items-center gap-1.5 rounded-full px-4 text-[0.95rem] font-[520] transition-colors hover:text-navy ${
-                      isActive(item) ? "text-navy" : "text-ink"
-                    }`}
+                    className={`group ${itemClass(item)}`}
                   >
                     {item.label}
                     <svg
@@ -102,9 +107,7 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href}
-                    className={`flex min-h-11 items-center rounded-full px-4 text-[0.95rem] font-[520] transition-colors hover:text-navy ${
-                      isActive(item) ? "text-navy" : "text-ink"
-                    }`}
+                    className={itemClass(item)}
                     aria-current={pathname === item.href ? "page" : undefined}
                   >
                     {item.label}

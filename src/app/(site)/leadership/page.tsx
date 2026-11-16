@@ -1,4 +1,4 @@
-import { HeroMedia } from "@/components/motion/HeroEnter";
+﻿import { HeroMedia } from "@/components/motion/HeroEnter";
 import { ImageReveal, Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero, SectionHead } from "@/components/sections/Blocks";
 import { ExternalArrow } from "@/components/ui/Buttons";
@@ -44,13 +44,13 @@ export default function LeadershipPage() {
         title="Dr. Cynthia Gregg, Managing Director and CEO"
         lead="Dr. Gregg leads Safety Signatures and is one of its registered directors. She came to private security from journalism and brand management, and speaks on private security and public safety in Nigeria."
         aside={
-          <HeroMedia className="relative aspect-[3/4] w-full overflow-hidden rounded-[28px] bg-sand">
+          <HeroMedia className="relative aspect-[3/4] w-full overflow-hidden rounded-[24px] bg-sand">
             <Photo name="ceoPortrait" sizes="(min-width: 1024px) 40vw, 100vw" priority />
           </HeroMedia>
         }
       />
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="py-24 md:py-32">
         <div className="wrap grid gap-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <SectionHead eyebrow="Biography" title="Career and education" />
@@ -85,7 +85,7 @@ export default function LeadershipPage() {
 
       <section className="py-24 md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
-          <ImageReveal className="photo-frame relative aspect-[3/2] rounded-[28px] lg:col-span-7">
+          <ImageReveal className="photo-frame relative aspect-[3/2] rounded-[24px] lg:col-span-7">
             <Photo name="conference" sizes="(min-width: 1024px) 58vw, 100vw" />
           </ImageReveal>
           <div className="lg:col-span-5">
@@ -109,7 +109,7 @@ export default function LeadershipPage() {
         </div>
       </section>
 
-      <section className="bg-sand py-24 md:py-32">
+      <section className="band bg-sand py-24 md:py-32">
         <div className="wrap">
           <SectionHead
             eyebrow="Recognition"

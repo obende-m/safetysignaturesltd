@@ -5,6 +5,7 @@ export const primaryAction = { label: "Request a consultation", href: "/contact"
 export type NavItem = { label: string; href: string; children?: { label: string; href: string; description?: string }[] };
 
 export const mainNav: NavItem[] = [
+  { label: "Home", href: "/" },
   {
     label: "Services",
     href: "/services",

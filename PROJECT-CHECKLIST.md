@@ -65,8 +65,6 @@ Status as of 16 November 2026.
 - [x] Create the Supabase project, run the migrations and seed, create the first admin
 - [ ] Turn off "Allow new users to sign up" (Authentication → Sign In / Providers)
 - [ ] Rotate the secret key and database password (they were shared in a chat), then update `.env.local` and Vercel
-- [ ] Add environment variables in Vercel and deploy
-- [ ] Point the domain at Vercel; set `NEXT_PUBLIC_SITE_URL`
-- [ ] Post-deploy check: test enquiry, test application, CV download, delete test records
-
-**The site is not deployed.**
+- [x] Add environment variables in Vercel and deploy: live at https://safetysignaturesltd.vercel.app
+- [x] Post-deploy check on the live site (16 November 2026): every route 200 (hidden and unknown pages 404, `/admin` redirects), security headers present, form test 6/6, admin test 10/10, test records deleted and confirmed gone in the database
+- [ ] Point `safetysignaturesltd.com.ng` at Vercel (it still serves the old site); `NEXT_PUBLIC_SITE_URL` is already set to it
