@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useId, useRef, useState } from "react";
 import { mainNav, primaryAction, type NavItem } from "@/content/site";
 import { images } from "@/content/images";
+import { formatPhone, primaryEmail, primaryPhone, telHref } from "@/content/company";
 import { Logo } from "@/components/ui/Logo";
 import { Arrow } from "@/components/ui/Buttons";
 
@@ -126,10 +127,25 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href={primaryAction.href} className="btn btn-primary hidden min-h-11! py-2.5! sm:inline-flex">
-            {primaryAction.label}
-            <Arrow />
-          </Link>
+          {primaryPhone() && (
+            <a
+              href={telHref(primaryPhone()!.value)}
+              className="hidden min-h-11 items-center gap-2 px-2 text-[0.92rem] font-[520] text-ink/80 transition-colors hover:text-navy 2xl:inline-flex"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+              </svg>
+              <span className="sr-only">Call Lagos</span>
+              {formatPhone(primaryPhone()!.value)}
+            </a>
+          )}
+          {/* Visibility sits on a wrapper: .btn sets its own display, which would override `hidden`. */}
+          <span className="hidden sm:block">
+            <Link href={primaryAction.href} className="btn btn-primary min-h-11! py-2.5!">
+              {primaryAction.label}
+              <Arrow />
+            </Link>
+          </span>
           <button
             type="button"
             className="flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-ink/15 px-4 text-sm font-[550] lg:hidden"
@@ -281,6 +297,21 @@ function MobileMenu({ pathname }: { pathname: string }) {
             {primaryAction.label}
             <Arrow />
           </Link>
+          <div className="mt-6 grid gap-1 text-[0.97rem]">
+            {primaryPhone() && (
+              <a href={telHref(primaryPhone()!.value)} className="inline-flex min-h-11 items-center">
+                Call Lagos: {formatPhone(primaryPhone()!.value)}
+              </a>
+            )}
+            {primaryEmail() && (
+              <a href={`mailto:${primaryEmail()!.value}`} className="inline-flex min-h-11 items-center break-all">
+                {primaryEmail()!.value}
+              </a>
+            )}
+            <Link href="/contact#phone-lines" className="inline-flex min-h-11 items-center text-navy">
+              Phone lines for every state
+            </Link>
+          </div>
         </div>
       </nav>
     </motion.div>

@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import { Reveal } from "@/components/motion/Reveal";
 import { EnquiryForm } from "@/components/forms/EnquiryForm";
 import { ExternalArrow } from "@/components/ui/Buttons";
-import { company, confirmedEmails, confirmedPhones, confirmedSocials, mapSearchUrl } from "@/content/company";
+import { company, confirmedEmails, confirmedSocials, formatPhone, mapSearchUrl, phonesByState, telHref } from "@/content/company";
 import { serviceOptions } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
 
@@ -21,7 +21,7 @@ const steps = [
 ];
 
 export default function ContactPage() {
-  const phones = confirmedPhones();
+  const phones = phonesByState();
   const emails = confirmedEmails();
   const socials = confirmedSocials();
   const whatsapp = company.whatsapp.confirmed ? company.whatsapp.value : null;
@@ -29,8 +29,8 @@ export default function ContactPage() {
 
   return (
     <section className="pt-[var(--nav-h)]">
-      <div className="wrap grid gap-14 pb-24 pt-14 md:pb-32 md:pt-20 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-5">
+      <div className="wrap grid gap-14 pb-24 pt-14 md:pb-32 md:pt-20 lg:grid-cols-12 lg:gap-x-16 lg:gap-y-12">
+        <div className="order-1 lg:col-span-5 lg:row-start-1">
           <Reveal>
             <p className="eyebrow">Contact</p>
             <h1 className="display t-1 mt-6 max-w-[14ch]">Request a security consultation</h1>
@@ -53,9 +53,11 @@ export default function ContactPage() {
               ))}
             </ol>
           </Reveal>
+        </div>
 
+        <div className="order-3 lg:col-span-5 lg:row-start-2">
           <Reveal delay={0.15}>
-            <dl className="mt-12 space-y-6">
+            <dl className="space-y-6">
               <div>
                 <dt className="font-mono text-xs text-mute">Head office</dt>
                 <dd className="mt-1.5">
@@ -72,14 +74,23 @@ export default function ContactPage() {
                 </div>
               )}
               {phones.length > 0 && (
-                <div>
-                  <dt className="font-mono text-xs text-mute">Phone</dt>
-                  <dd className="mt-1.5 grid gap-1 text-[1.05rem]">
-                    {phones.map((p) => (
-                      <a key={p.value} href={`tel:${p.value}`} className="link-draw w-fit">
-                        {p.label}: {p.value}
-                      </a>
-                    ))}
+                <div id="phone-lines" className="scroll-mt-[calc(var(--nav-h)+16px)]">
+                  <dt className="font-mono text-xs text-mute">Phone lines</dt>
+                  <dd className="mt-2">
+                    <ul className="border-t border-line">
+                      {phones.map((g) => (
+                        <li key={g.state} className="grid grid-cols-[7.5rem_1fr] items-baseline gap-x-4 border-b border-line py-2">
+                          <span className="text-[0.95rem] text-mute">{g.state}</span>
+                          <span className="flex flex-wrap gap-x-4">
+                            {g.numbers.map((n) => (
+                              <a key={n} href={telHref(n)} className="link-draw inline-flex min-h-10 items-center text-[1.05rem]">
+                                {formatPhone(n)}
+                              </a>
+                            ))}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </dd>
                 </div>
               )}
@@ -122,7 +133,7 @@ export default function ContactPage() {
           </Reveal>
         </div>
 
-        <Reveal className="lg:col-span-7" delay={0.05}>
+        <Reveal className="order-2 lg:col-span-7 lg:col-start-7 lg:row-span-2 lg:row-start-1 lg:self-start" delay={0.05}>
           <div className="rounded-[28px] border border-line bg-white p-6 sm:p-8 md:p-12">
             <h2 className="display text-[1.9rem] leading-tight">Your consultation request</h2>
             <p className="mt-2 text-mute">All fields are required unless marked optional.</p>

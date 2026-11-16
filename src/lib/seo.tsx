@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { company, siteUrl } from "@/content/company";
+import { company, primaryEmail, primaryPhone, siteUrl } from "@/content/company";
 
 /** Per-page metadata with a canonical URL and matching Open Graph tags. */
 export function pageMeta({
@@ -37,7 +37,15 @@ export function organizationJsonLd() {
     logo: `${siteUrl}/images/brand/safety-signatures-logo.png`,
     image: `${siteUrl}/og.jpg`,
     areaServed: { "@type": "City", name: "Lagos" },
-    address: { "@type": "PostalAddress", addressLocality: "Oworonshoki, Lagos", addressCountry: "NG" },
+    address: {
+      "@type": "PostalAddress",
+      ...(company.address.confirmed ? { streetAddress: "Security House, Salami Ogejo Street, Off Palace Way, Oko Cole" } : {}),
+      addressLocality: "Oworonshoki, Lagos",
+      addressRegion: "Lagos",
+      addressCountry: "NG",
+    },
+    ...(primaryPhone() ? { telephone: `+234${primaryPhone()!.value.slice(1)}` } : {}),
+    ...(primaryEmail() ? { email: primaryEmail()!.value } : {}),
     sameAs: company.socials.filter((s) => s.confirmed).map((s) => s.href),
   };
 }

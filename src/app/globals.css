@@ -65,7 +65,7 @@ body {
 
 .display {
   font-family: var(--font-display);
-  font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  font-variation-settings: "opsz" 144;
   font-weight: 380;
   letter-spacing: -0.022em;
   line-height: 1.02;

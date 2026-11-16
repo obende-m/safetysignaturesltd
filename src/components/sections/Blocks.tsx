@@ -5,7 +5,7 @@ import { ButtonLink, ExternalArrow } from "@/components/ui/Buttons";
 import { primaryAction } from "@/content/site";
 import { tiers } from "@/content/standards";
 import { mediaCategoryLabels, type Article, type MediaCategory } from "@/content/articles";
-import { company, mapSearchUrl } from "@/content/company";
+import { company, formatPhone, mapSearchUrl, primaryEmail, primaryPhone, telHref } from "@/content/company";
 
 export function SectionHead({
   eyebrow,
@@ -142,6 +142,26 @@ export function CloseCTA({
                 </a>
               </dd>
             </div>
+            {primaryPhone() && (
+              <div>
+                <dt className="font-mono text-xs text-mute-dark">Call Lagos</dt>
+                <dd className="mt-1.5">
+                  <a href={telHref(primaryPhone()!.value)} className="link-draw">
+                    {formatPhone(primaryPhone()!.value)}
+                  </a>
+                </dd>
+              </div>
+            )}
+            {primaryEmail() && (
+              <div>
+                <dt className="font-mono text-xs text-mute-dark">Email</dt>
+                <dd className="mt-1.5 break-all">
+                  <a href={`mailto:${primaryEmail()!.value}`} className="link-draw">
+                    {primaryEmail()!.value}
+                  </a>
+                </dd>
+              </div>
+            )}
             <div>
               <dt className="font-mono text-xs text-mute-dark">Recruitment</dt>
               <dd className="mt-1.5">

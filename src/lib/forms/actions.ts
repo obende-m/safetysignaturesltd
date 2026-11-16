@@ -11,9 +11,18 @@ import {
   fieldErrors,
   type FormState,
 } from "./schemas";
+import { formatPhone, primaryEmail, primaryPhone } from "@/content/company";
 
-const UNAVAILABLE =
-  "We could not send your message because our enquiry system is not connected yet. Please try again later.";
+
+const reachUs = () => {
+  const phone = primaryPhone();
+  const email = primaryEmail();
+  if (phone && email) return ` You can also call ${formatPhone(phone.value)} or email ${email.value}.`;
+  return "";
+};
+
+const UNAVAILABLE = () =>
+  `We could not send your message because our enquiry system is not connected yet. Please try again later.${reachUs()}`;
 
 const values = (formData: FormData, keys: string[]) =>
   Object.fromEntries(keys.map((k) => [k, String(formData.get(k) ?? "")]));
@@ -32,7 +41,7 @@ export async function submitEnquiry(_prev: FormState, formData: FormData): Promi
   }
 
   if (!isServiceConfigured()) {
-    return { status: "error", message: UNAVAILABLE, values: keep };
+    return { status: "error", message: UNAVAILABLE(), values: keep };
   }
 
   const db = createAdminClient();
@@ -63,7 +72,7 @@ export async function submitEnquiry(_prev: FormState, formData: FormData): Promi
 
   if (error) {
     console.error("[forms] Enquiry insert failed:", error.message);
-    return { status: "error", message: "Something went wrong while sending your request. Please try again.", values: keep };
+    return { status: "error", message: `Something went wrong while sending your request. Please try again.${reachUs()}`, values: keep };
   }
 
   return {
@@ -112,7 +121,7 @@ export async function submitApplication(_prev: FormState, formData: FormData): P
   }
 
   if (!isServiceConfigured()) {
-    return { status: "error", message: UNAVAILABLE.replace("message", "application"), values: keep };
+    return { status: "error", message: UNAVAILABLE().replace("your message", "your application"), values: keep };
   }
 
   const db = createAdminClient();
