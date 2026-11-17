@@ -34,8 +34,8 @@ export default async function InsightsPage() {
                 <Link href={`/insights/${lead.slug}`} className="group grid gap-8 rounded-[24px] bg-ink p-8 text-paper md:p-14 lg:grid-cols-12">
                   <div className="lg:col-span-8">
                     <p className="font-mono text-xs text-mute-dark">
-                      {lead.category} Â· {formatDate(lead.publishedAt, lead.dateLabel)}
-                      {lead.readingMinutes ? ` Â· ${lead.readingMinutes} min read` : ""}
+                      {lead.category} · {formatDate(lead.publishedAt, lead.dateLabel)}
+                      {lead.readingMinutes ? ` · ${lead.readingMinutes} min read` : ""}
                     </p>
                     <h2 className="display t-2 mt-6 max-w-[20ch] transition-colors">{lead.title}</h2>
                     <p className="lead mt-6 max-w-[56ch] text-mute-dark">{lead.excerpt}</p>
@@ -55,7 +55,7 @@ export default async function InsightsPage() {
                     <Reveal as="li" key={a.slug} delay={i * 0.06}>
                       <Link href={`/insights/${a.slug}`} className="group card-lift block border-t border-ink pt-6">
                         <p className="font-mono text-xs text-mute">
-                          {a.category} Â· {formatDate(a.publishedAt, a.dateLabel)}
+                          {a.category} · {formatDate(a.publishedAt, a.dateLabel)}
                         </p>
                         <h2 className="display mt-4 text-[1.9rem] leading-tight transition-colors group-hover:text-navy">{a.title}</h2>
                         <p className="mt-3 leading-relaxed text-mute">{a.excerpt}</p>

@@ -10,6 +10,7 @@ import { images } from "@/content/images";
 import { formatPhone, primaryEmail, primaryPhone, telHref } from "@/content/company";
 import { Logo } from "@/components/ui/Logo";
 import { Arrow } from "@/components/ui/Buttons";
+import { ScrollProgress } from "@/components/motion/Reveal";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -67,22 +68,24 @@ export function Header() {
 
   const itemClass = (item: NavItem) =>
     `flex min-h-10 items-center gap-1.5 rounded-full px-3.5 text-[0.92rem] font-[550] tracking-[-0.01em] transition-all duration-300 ${
-      isActive(item) ? "bg-white text-ink shadow-[0_1px_2px_rgba(10,19,48,0.08),0_4px_12px_-6px_rgba(10,19,48,0.18)]" : "text-ink/70 hover:text-ink"
+      isActive(item) ? "bg-white text-navy-deep shadow-[0_4px_14px_-6px_rgba(0,0,0,0.45)]" : "text-white/80 hover:bg-white/10 hover:text-white"
     }`;
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,border-color] duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 text-white transition-[background-color,box-shadow] duration-500 ${
         scrolled || open || mobileOpen
-          ? "border-b border-line/80 bg-white/85 shadow-[0_10px_30px_-24px_rgba(10,19,48,0.35)] backdrop-blur-xl"
-          : "border-b border-transparent bg-white"
+          ? "bg-navy-deep/95 shadow-[0_14px_34px_-20px_rgba(5,12,35,0.7)] backdrop-blur-xl"
+          : "bg-navy-deep"
       }`}
     >
-      <div className="wrap flex h-[var(--nav-h)] items-center justify-between gap-6">
-        <Logo priority />
+      {/* Thin brand stripe along the top edge. */}
+      <div className="h-[3px] bg-gradient-to-r from-red via-red to-navy" aria-hidden="true" />
+      <div className="wrap flex h-[calc(var(--nav-h)-3px)] items-center justify-between gap-6">
+        <Logo priority chip width={112} />
 
         <nav aria-label="Main" className="hidden lg:block" onMouseLeave={scheduleClose}>
-          <ul className="flex items-center gap-0.5 rounded-full border border-line bg-sand/80 p-1">
+          <ul className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.06] p-1">
             {mainNav.map((item) => (
               <li key={item.label} onMouseEnter={() => (item.children ? openMenu(item.label) : setOpen(null))}>
                 {item.children ? (
@@ -133,7 +136,7 @@ export function Header() {
           {primaryPhone() && (
             <a
               href={telHref(primaryPhone()!.value)}
-              className="hidden min-h-11 items-center gap-2 px-2 text-[0.92rem] font-[520] text-ink/80 transition-colors hover:text-navy 2xl:inline-flex"
+              className="hidden min-h-11 items-center gap-2 px-2 text-[0.92rem] font-[550] text-white/85 transition-colors hover:text-white 2xl:inline-flex"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
@@ -151,7 +154,7 @@ export function Header() {
           </span>
           <button
             type="button"
-            className="flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-ink/15 px-4 text-sm font-[550] lg:hidden"
+            className="flex min-h-11 min-w-11 items-center justify-center gap-2 rounded-full border border-white/25 px-4 text-sm font-[600] text-white lg:hidden"
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
             onClick={() => setMobileOpen((v) => !v)}
@@ -165,6 +168,7 @@ export function Header() {
         </div>
       </div>
 
+      <ScrollProgress className="absolute inset-x-0 bottom-0 h-[2px] bg-red" />
       <AnimatePresence>{mobileOpen && <MobileMenu pathname={pathname} />}</AnimatePresence>
     </header>
   );
@@ -182,7 +186,7 @@ function MegaPanel({ item, onEnter, onLeave }: { item: NavItem; onEnter: () => v
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -6, transition: { duration: 0.18 } }}
       transition={{ duration: 0.4, ease }}
-      className="absolute inset-x-0 top-[var(--nav-h)] border-b border-line bg-paper shadow-[0_30px_60px_-40px_rgba(11,20,48,0.45)]"
+      className="absolute inset-x-0 top-[var(--nav-h)] border-b border-line bg-paper text-ink shadow-[0_30px_60px_-40px_rgba(11,20,48,0.45)]"
     >
       <div className="wrap grid grid-cols-12 gap-10 py-10">
         <ul className={`${isServices ? "col-span-8 grid-cols-2" : "col-span-8 grid-cols-2"} grid gap-x-10 gap-y-1`}>
@@ -193,7 +197,7 @@ function MegaPanel({ item, onEnter, onLeave }: { item: NavItem; onEnter: () => v
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease, delay: 0.03 * i }}
             >
-              <Link href={child.href} className="group block rounded-2xl px-4 py-3.5 transition-colors hover:bg-sand/70">
+              <Link href={child.href} className="group block rounded-2xl px-4 py-3.5 transition-colors hover:bg-sand">
                 <span className="flex items-center justify-between gap-4 font-[560] text-ink">
                   {child.label}
                   <Arrow className="opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
@@ -237,7 +241,7 @@ function MobileMenu({ pathname }: { pathname: string }) {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0, transition: { duration: 0.2 } }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-x-0 bottom-0 top-[var(--nav-h)] overflow-y-auto bg-paper lg:hidden"
+      className="fixed inset-x-0 bottom-0 top-[var(--nav-h)] overflow-y-auto bg-paper text-ink lg:hidden"
     >
       <nav aria-label="Main" className="wrap flex min-h-full flex-col pb-8 pt-4">
         <ul className="divide-y divide-line border-b border-line">

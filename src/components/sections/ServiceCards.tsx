@@ -36,9 +36,6 @@ export function ServiceCards({ items }: { items: Item[] }) {
                 <span className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:40px_40px]" />
               </span>
             )}
-            <span className="absolute left-6 top-6 rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-[600] tracking-wide backdrop-blur-md md:left-8 md:top-8">
-              {String(i + 1).padStart(2, "0")}
-            </span>
             <span className="display block text-[1.6rem] leading-tight md:text-[1.9rem]">{s.name}</span>
             <span className="mt-2 block max-w-md text-[0.95rem] leading-relaxed text-white/75">{s.short}</span>
             <span className="mt-5 inline-flex items-center gap-2 text-sm font-[600]">

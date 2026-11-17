@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
-import { ImageReveal, Reveal } from "@/components/motion/Reveal";
+import { ImageReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { ShieldIcon } from "@/components/ui/Icons";
 import { CloseCTA, PageHero, SectionHead, TierLadder } from "@/components/sections/Blocks";
 import { ExternalArrow } from "@/components/ui/Buttons";
 import { Photo } from "@/components/ui/Photo";
@@ -64,26 +65,28 @@ export default function WhyPage() {
 
       <section className="pb-24 md:pb-32">
         <div className="wrap">
-          <ol className="grid gap-px overflow-hidden rounded-[24px] border border-line bg-line md:grid-cols-2 lg:grid-cols-3">
-            {reasons.map((r, i) => (
-              <li key={r.title} className="flex flex-col bg-paper p-8 md:p-10">
-                <span className="font-mono text-sm text-red">{String(i + 1).padStart(2, "0")}</span>
-                <h2 className="display mt-8 text-[1.8rem] leading-tight">{r.title}</h2>
+          <Stagger as="ul" className="grid gap-4 pt-14 md:grid-cols-2 md:pt-20 lg:grid-cols-3">
+            {reasons.map((r) => (
+              <StaggerItem as="li" key={r.title} className="card-lift flex flex-col rounded-[24px] border border-line bg-sand p-8 md:p-10">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-navy shadow-[0_6px_16px_-8px_rgba(10,19,48,0.35)]">
+                  <ShieldIcon />
+                </span>
+                <h2 className="display mt-8 text-[1.7rem] leading-tight">{r.title}</h2>
                 <p className="mt-4 leading-relaxed text-mute">{r.body}</p>
-                <Link href={r.href} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-6 font-[560] text-navy">
+                <Link href={r.href} className="mt-auto inline-flex min-h-11 items-center gap-2 pt-6 font-[600] text-navy">
                   <span className="link-draw">{r.link}</span>
-                  <span aria-hidden="true">â†’</span>
+                  <span aria-hidden="true">→</span>
                 </Link>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </Stagger>
         </div>
       </section>
 
       <section className="band bg-sand py-24 md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
-            <SectionHead eyebrow={`Regulatory visit Â· ${nscdcVisit.date}`} title="Commended by the regulator" lead={nscdcVisit.summary} />
+            <SectionHead eyebrow={`Regulatory visit · ${nscdcVisit.date}`} title="Commended by the regulator" lead={nscdcVisit.summary} />
             <Reveal delay={0.1} className="mt-8">
               <a href={nscdcVisit.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">Read the {nscdcVisit.source.publication} report</span>

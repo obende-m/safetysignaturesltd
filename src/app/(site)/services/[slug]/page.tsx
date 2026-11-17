@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { HeroLine, HeroMedia, HeroText } from "@/components/motion/HeroEnter";
-import { Reveal } from "@/components/motion/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { CheckBadge } from "@/components/ui/Icons";
 import { CloseCTA, SectionHead, TierLadder } from "@/components/sections/Blocks";
 import { Arrow, ButtonLink } from "@/components/ui/Buttons";
 import { Photo } from "@/components/ui/Photo";
@@ -34,7 +35,6 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
   const service = getService(slug);
   if (!service) notFound();
 
-  const index = publishedServices.findIndex((s) => s.slug === service.slug);
   const related = service.related.map((r) => publishedServices.find((s) => s.slug === r)).filter((s) => s !== undefined);
   const enquireHref = `/contact?service=${encodeURIComponent(service.name)}`;
 
@@ -42,31 +42,31 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
     <>
       {/* Hero */}
       <section className="px-2 pt-[var(--nav-h)] md:px-3">
-        <div className="relative isolate overflow-hidden rounded-[28px] bg-sand">
+        <div className="on-dark relative isolate overflow-hidden rounded-[28px] bg-navy-deep text-white">
         <div
-          className="pointer-events-none absolute -right-32 -top-48 -z-10 h-[520px] w-[620px] rounded-full bg-[#d9e2f5] blur-[100px]"
+          className="pointer-events-none absolute -right-32 -top-48 -z-10 h-[520px] w-[620px] rounded-full bg-navy blur-[110px]"
           aria-hidden="true"
         />
         <div className="wrap grid gap-10 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:items-center lg:gap-14">
           <HeroText className="flex flex-col lg:col-span-7" delay={0.05}>
             <HeroLine>
-              <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-[0.85rem] text-mute">
-                <Link href="/" className="inline-flex min-h-10 items-center font-[550] text-ink/70 transition-colors hover:text-navy">
+              <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-[0.85rem] text-white/60">
+                <Link href="/" className="inline-flex min-h-10 items-center font-[550] text-white/80 transition-colors hover:text-white">
                   Home
                 </Link>
                 <span aria-hidden="true">/</span>
-                <Link href="/services" className="inline-flex min-h-10 items-center font-[550] text-ink/70 transition-colors hover:text-navy">
+                <Link href="/services" className="inline-flex min-h-10 items-center font-[550] text-white/80 transition-colors hover:text-white">
                   Services
                 </Link>
                 <span aria-hidden="true">/</span>
-                <span className="eyebrow">Service {String(index + 1).padStart(2, "0")}</span>
+                <span className="eyebrow">{service.name}</span>
               </nav>
             </HeroLine>
             <HeroLine>
               <h1 className="display t-1 mt-5 max-w-[16ch] text-balance">{service.name}</h1>
             </HeroLine>
             <HeroLine>
-              <p className="lead mt-7 max-w-[54ch] text-mute">{service.intro}</p>
+              <p className="lead mt-7 max-w-[54ch] text-white/75">{service.intro}</p>
             </HeroLine>
             <HeroLine className="mt-9 flex flex-wrap gap-3">
               <ButtonLink href={enquireHref}>Request a consultation</ButtonLink>
@@ -121,15 +121,15 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
       <section className="py-24 md:py-32">
         <div className="wrap">
           <SectionHead eyebrow="What is included" title={`What our ${inSentence(service.name)} covers`} />
-          <ol className="mt-14 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-            {service.capabilities.map((c, i) => (
-              <li key={c.title} className="bg-paper p-7 md:p-9">
-                <span className="font-mono text-sm text-red">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="mt-5 text-[1.15rem] font-[600] leading-snug">{c.title}</h3>
+          <Stagger as="ul" className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {service.capabilities.map((c) => (
+              <StaggerItem as="li" key={c.title} className="card-lift rounded-[24px] border border-line bg-sand p-7 md:p-8">
+                <CheckBadge />
+                <h3 className="mt-6 text-[1.15rem] font-[650] leading-snug tracking-[-0.015em]">{c.title}</h3>
                 <p className="mt-3 leading-relaxed text-mute">{c.body}</p>
-              </li>
+              </StaggerItem>
             ))}
-          </ol>
+          </Stagger>
         </div>
       </section>
 

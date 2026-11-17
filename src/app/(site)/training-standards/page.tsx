@@ -98,7 +98,7 @@ export default function TrainingPage() {
           <Reveal className="mt-12">
             <Link href="/services/risk-assessment-consultancy" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
               <span className="link-draw">See training for your own security staff</span>
-              <span aria-hidden="true">â†’</span>
+              <span aria-hidden="true">→</span>
             </Link>
           </Reveal>
         </div>

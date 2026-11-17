@@ -13,8 +13,8 @@
   --color-red: #da251d;
   --color-red-deep: #b81d16;
   --color-paper: #ffffff;
-  --color-sand: #f3f5f9;
-  --color-line: #e3e7ef;
+  --color-sand: #edf1fa;
+  --color-line: #dde4f1;
   --color-line-dark: #263257;
   --color-mute: #5a6275;
   --color-mute-dark: #9aa4bd;
@@ -108,6 +108,8 @@ body {
   box-shadow: 0 0 0 4px rgba(218, 37, 29, 0.14);
 }
 .on-dark .eyebrow { color: rgba(255, 255, 255, 0.72); }
+.close-cta .eyebrow { color: rgba(255, 255, 255, 0.9); }
+.close-cta .eyebrow::before { background: #fff; box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.22); }
 
 /* Buttons: one solid, one outline. They step on hover and press on click. */
 .btn {
@@ -151,6 +153,36 @@ body {
 .on-dark .btn-outline { color: #fff; border-color: rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.06); backdrop-filter: blur(8px); }
 .on-dark .btn-outline:hover { background: #fff; color: var(--color-ink); border-color: #fff; }
 
+/* A light sweep crosses solid buttons on hover. */
+.btn-primary, .btn-light { overflow: hidden; isolation: isolate; }
+.btn-primary::after, .btn-light::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -60%;
+  width: 45%;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-18deg);
+  transition: left 0.75s var(--ease-out-soft);
+}
+.btn-primary:hover::after, .btn-light:hover::after { left: 120%; }
+
+/* The soft colour glows on navy and red panels drift slowly. */
+.blur-\[100px\], .blur-\[110px\], .blur-\[120px\] { animation: drift 18s ease-in-out infinite alternate; }
+
+/* White button for red or photo backgrounds. */
+.btn-light { background: #fff; color: var(--color-ink); box-shadow: 0 10px 26px -14px rgba(10, 19, 48, 0.5); }
+.btn-light:hover { background: var(--color-ink); color: #fff; }
+
+/* Faint grid texture for navy panels. */
+.grid-lines {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at top left, black, transparent 75%);
+}
+
 /* Text links draw their underline on hover. */
 .link-draw {
   background-image: linear-gradient(currentColor, currentColor);
@@ -177,6 +209,11 @@ body {
 
 /* Infinite marquee (homepage service strip). Paused on hover; still for reduced motion. */
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(40px, 30px, 0) scale(1.12); }
+  100% { transform: translate3d(-30px, 50px, 0) scale(0.95); }
+}
 .marquee-track { animation: marquee 48s linear infinite; }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 
@@ -254,4 +291,5 @@ select.field { appearance: none; background-image: url("data:image/svg+xml,%3Csv
     scroll-behavior: auto !important;
   }
   .marquee-track { animation: none; }
+  .blur-\[100px\], .blur-\[110px\], .blur-\[120px\] { animation: none; }
 }

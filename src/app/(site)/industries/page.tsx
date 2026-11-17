@@ -3,6 +3,7 @@ import { HeroMedia } from "@/components/motion/HeroEnter";
 import { Reveal } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero } from "@/components/sections/Blocks";
 import { Photo } from "@/components/ui/Photo";
+import { ShieldIcon } from "@/components/ui/Icons";
 import { publishedServices } from "@/content/services";
 import { industries } from "@/content/site";
 import { pageMeta } from "@/lib/seo";
@@ -32,11 +33,13 @@ export default function IndustriesPage() {
         <div className="wrap">
           <h2 className="sr-only">Industries</h2>
           <ul className="border-t border-line">
-            {industries.map((ind, i) => (
-              <Reveal as="li" key={ind.name} className="grid gap-6 border-b border-line py-10 md:grid-cols-12 md:gap-10">
-                <span className="font-mono text-sm text-red md:col-span-1">{String(i + 1).padStart(2, "0")}</span>
-                <div className="md:col-span-5">
-                  <h3 className="display text-[1.9rem] leading-tight md:text-[2.2rem]">{ind.name}</h3>
+            {industries.map((ind) => (
+              <Reveal as="li" key={ind.name} className="group grid gap-6 border-b border-line py-10 md:grid-cols-12 md:gap-10">
+                <div className="flex items-start gap-4 md:col-span-6">
+                  <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-sand text-navy transition-colors duration-500 group-hover:bg-red group-hover:text-white">
+                    <ShieldIcon className="h-5 w-5" />
+                  </span>
+                  <h3 className="display text-[1.9rem] leading-tight transition-transform duration-500 group-hover:translate-x-1 md:text-[2.2rem]">{ind.name}</h3>
                 </div>
                 <div className="md:col-span-6">
                   <p className="text-[1.05rem] leading-relaxed text-ink/85">{ind.need}</p>

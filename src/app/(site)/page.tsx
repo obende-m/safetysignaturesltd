@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { HeroBackdrop, HeroLine, HeroRule, HeroText } from "@/components/motion/HeroEnter";
 import { ImageReveal, Parallax, Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { WordHighlight } from "@/components/motion/WordHighlight";
@@ -7,6 +6,7 @@ import { Marquee } from "@/components/sections/Marquee";
 import { ServiceCards } from "@/components/sections/ServiceCards";
 import { ButtonLink, ExternalArrow } from "@/components/ui/Buttons";
 import { Photo } from "@/components/ui/Photo";
+import { ShieldIcon } from "@/components/ui/Icons";
 import { company, nscdcVisit } from "@/content/company";
 import { publishedServices } from "@/content/services";
 import { primaryAction } from "@/content/site";
@@ -99,12 +99,14 @@ export default async function HomePage() {
       </section>
 
       {/* 2. Service strip */}
-      <section aria-label="Our services" className="py-10 md:py-14">
-        <Marquee items={publishedServices.map((s) => s.name)} className="text-ink" />
+      <section aria-label="Our services" className="px-2 pt-2 md:px-3 md:pt-3">
+        <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-r from-red to-red-deep py-7 text-white md:py-9">
+          <Marquee items={publishedServices.map((s) => s.name)} dot="bg-white/80" />
+        </div>
       </section>
 
       {/* 3. Who we are */}
-      <section className="pb-24 pt-8 md:pb-32 md:pt-12">
+      <section className="py-24 md:py-32">
         <div className="wrap grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
           <div className="lg:col-span-6">
             <SectionHead
@@ -114,13 +116,15 @@ export default async function HomePage() {
             />
             <Stagger className="mt-10 grid gap-4 sm:grid-cols-2">
               {[
-                { t: "Assessment before deployment", b: "Every site is assessed for weak points before officers are placed on it." },
-                { t: "Officers who are looked after", b: "Annual leave, staff loans and merit awards keep good officers with us." },
+                { t: "Assessment before deployment", b: "Every site is assessed for weak points before officers are placed on it.", c: "bg-navy-deep", i: "bg-red" },
+                { t: "Officers who are looked after", b: "Annual leave, staff loans and merit awards keep good officers with us.", c: "bg-red", i: "bg-navy-deep" },
               ].map((f) => (
-                <StaggerItem key={f.t} className="rounded-[20px] border border-line bg-sand p-6">
-                  <span className="block h-1 w-8 rounded-full bg-red" aria-hidden="true" />
+                <StaggerItem key={f.t} className={`card-lift rounded-[20px] p-6 text-white ${f.c}`}>
+                  <span className={`flex h-10 w-10 items-center justify-center rounded-full ${f.i}`}>
+                    <ShieldIcon className="h-5 w-5" />
+                  </span>
                   <h3 className="mt-5 font-[650] tracking-[-0.015em]">{f.t}</h3>
-                  <p className="mt-2 text-[0.95rem] leading-relaxed text-mute">{f.b}</p>
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-white/75">{f.b}</p>
                 </StaggerItem>
               ))}
             </Stagger>
@@ -226,29 +230,43 @@ export default async function HomePage() {
       </section>
 
       {/* 8. Approach */}
-      <section className="pb-24 md:pb-32">
+      <section className="band on-dark bg-navy-deep py-24 text-white md:py-32">
+        <div className="pointer-events-none absolute -left-40 -top-40 -z-10 h-[520px] w-[520px] rounded-full bg-navy blur-[120px]" aria-hidden="true" />
+        <div className="grid-lines pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
         <div className="wrap">
-          <SectionHead split eyebrow="Our approach" title="How we set up a security post" lead="Four steps, in the same order, for every new site." />
-          <Stagger as="ol" className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" gap={0.1}>
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+            <div className="lg:col-span-5">
+              <SectionHead dark eyebrow="Our approach" title="How we set up a security post" lead="Four steps, in the same order, for every new site." />
+              <Reveal className="mt-8">
+                <ButtonLink href="/training-standards" variant="outline">
+                  Our training and standards
+                </ButtonLink>
+              </Reveal>
+            </div>
+            <ImageReveal className="photo-frame relative aspect-[16/10] rounded-[24px] lg:col-span-7">
+              <Photo name="vehicleSearch" sizes="(min-width: 1024px) 55vw, 100vw" />
+            </ImageReveal>
+          </div>
+          <Stagger as="ol" className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" gap={0.1}>
             {approachSteps.map((s, i) => (
-              <StaggerItem as="li" key={s.title} className="card-lift flex flex-col rounded-[24px] border border-line bg-sand p-7">
-                <span className="display text-[2.6rem] leading-none text-red">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="display mt-10 text-[1.45rem] leading-tight">{s.title}</h3>
-                <p className="mt-3 text-[0.97rem] leading-relaxed text-mute">{s.body}</p>
+              <StaggerItem
+                as="li"
+                key={s.title}
+                className="card-lift group flex flex-col rounded-[24px] border border-white/10 bg-white/[0.05] p-7 hover:border-white/25 hover:bg-white/[0.09]"
+              >
+                <span className="display flex h-12 w-12 items-center justify-center rounded-full bg-red text-[1.05rem] text-white transition-transform duration-500 group-hover:rotate-[8deg] group-hover:scale-110">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display mt-8 text-[1.45rem] leading-tight">{s.title}</h3>
+                <p className="mt-3 text-[0.97rem] leading-relaxed text-white/70">{s.body}</p>
               </StaggerItem>
             ))}
           </Stagger>
-          <Reveal className="mt-10">
-            <Link href="/training-standards" className="inline-flex min-h-11 items-center gap-2 font-[600] text-navy">
-              <span className="link-draw">See our training and standards</span>
-              <span aria-hidden="true">→</span>
-            </Link>
-          </Reveal>
         </div>
       </section>
 
       {/* 9. Leadership */}
-      <section className="px-2 md:px-3">
+      <section className="mt-2 px-2 md:mt-3 md:px-3">
         <div className="rounded-[28px] bg-sand">
           <div className="wrap grid gap-12 py-20 md:py-28 lg:grid-cols-12 lg:items-center lg:gap-16">
             <ImageReveal className="photo-frame relative aspect-[3/4] max-h-[680px] rounded-[24px] lg:col-span-5">

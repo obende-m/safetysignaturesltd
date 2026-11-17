@@ -25,7 +25,7 @@ export function ButtonLink({
 }: {
   href: string;
   children: ReactNode;
-  variant?: "primary" | "outline";
+  variant?: "primary" | "outline" | "light";
   className?: string;
 }) {
   return (

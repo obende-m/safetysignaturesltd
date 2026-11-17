@@ -35,6 +35,46 @@ export function Reveal({
   );
 }
 
+/** A heading whose words rise in one after another when it scrolls into view. */
+export function WordsReveal({ text, className, as = "h2" }: { text: string; className?: string; as?: "h2" | "h1" | "span" }) {
+  const reduce = useReducedMotion();
+  const Comp = motion[as];
+  const words = text.split(" ");
+  return (
+    <Comp
+      className={className}
+      initial={reduce ? false : "hidden"}
+      whileInView="shown"
+      viewport={viewport}
+      variants={{ hidden: {}, shown: { transition: { staggerChildren: 0.045 } } }}
+      aria-label={text}
+    >
+      {words.map((w, i) => (
+        <span key={i} aria-hidden="true">
+          <span className="inline-block overflow-hidden pb-[0.1em] -mb-[0.1em] align-top">
+            <motion.span
+              className="inline-block"
+              variants={{
+                hidden: { y: "105%", opacity: 0 },
+                shown: { y: "0%", opacity: 1, transition: { duration: 0.75, ease } },
+              }}
+            >
+              {w}
+            </motion.span>
+          </span>
+          {i < words.length - 1 ? " " : null}
+        </span>
+      ))}
+    </Comp>
+  );
+}
+
+/** A thin red bar under the header that fills as the page is read. */
+export function ScrollProgress({ className }: { className?: string }) {
+  const { scrollYProgress } = useScroll();
+  return <motion.div className={className} style={{ scaleX: scrollYProgress, transformOrigin: "0% 50%" }} aria-hidden="true" />;
+}
+
 /** A list or grid whose items rise in one after another. Use with StaggerItem. */
 export function Stagger({
   children,

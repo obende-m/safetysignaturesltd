@@ -1,6 +1,7 @@
 import { MotionConfig } from "motion/react";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/layout/BackToTop";
 import { JsonLd, organizationJsonLd } from "@/lib/seo";
 
 export default function SiteLayout({ children }: { children: React.ReactNode }) {
@@ -15,6 +16,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         {children}
       </main>
       <Footer />
+      <BackToTop />
       <JsonLd data={organizationJsonLd()} />
     </MotionConfig>
   );

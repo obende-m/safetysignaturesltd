@@ -92,8 +92,8 @@ export default async function CareersPage() {
                   <div className="md:col-span-5">
                     <h3 className="display text-[1.8rem] leading-tight">{v.title}</h3>
                     <p className="mt-2 font-mono text-xs text-mute">
-                      {v.location} Â· {v.employmentType}
-                      {v.closingDate ? ` Â· Closes ${formatDate(v.closingDate)}` : ""}
+                      {v.location} · {v.employmentType}
+                      {v.closingDate ? ` · Closes ${formatDate(v.closingDate)}` : ""}
                     </p>
                   </div>
                   <div className="md:col-span-7">

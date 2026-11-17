@@ -18,7 +18,7 @@ Brand colours sampled from the logo: red **#DA251D**, navy **#183884**. The site
 |---|---|---|---|
 | `Gemini…r99jps…` (enhanced crop of `guards-formation-slide01.png`) | `operations/guards-formation.jpg` | Uniformed officers walking in formation, a woman in a navy suit at the centre | Home hero, careers hero, share image |
 | `Gemini…abqhqc…` (enhanced `guards-group-handshake.jpg`) | `operations/guards-handshake.jpg` | Officers gathered while two shake hands | Home, training, Company menu panel |
-| `Gemini…2ong86…` (enhanced `vehicle-search-gate.png`) | `operations/vehicle-search.jpg` | Officers checking a car boot at a gate | Home (approach), about, industries, services index |
+| `Gemini…bj63gx…` (enhanced `vehicle-search-gate.png`, supplied 17 November 2026 to replace the earlier enhanced version) | `operations/vehicle-search.jpg` | Officers checking a red car's boot at a gate | Home (approach), about, industries |
 | `Gemini…mwp7fv…` (enhanced `guards-building-slide03.png`) | `operations/guards-line-up.jpg` | Officers standing at attention outside a building | Manned guarding, about, services hub, Services menu panel |
 | `03-…/guards-parade-slide02.png` | `operations/guards-parade.jpg` | Officers on a parade ground | Home (careers band), training |
 | `Gemini…ajo235…` | `visits/nscdc-visit-team.jpg` | Two NSCDC officers with staff in red "SECURITY" shirts, in an office | News, why page |

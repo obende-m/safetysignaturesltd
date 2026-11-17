@@ -56,7 +56,7 @@ export default async function NewsPage() {
             <Photo name="nscdcTeam" sizes="(min-width: 1024px) 58vw, 100vw" priority />
           </ImageReveal>
           <div className="lg:col-span-5">
-            <SectionHead eyebrow={`Regulatory visit Â· ${nscdcVisit.date}`} title="NSCDC Private Guard Companies department visit" lead={nscdcVisit.summary} />
+            <SectionHead eyebrow={`Regulatory visit · ${nscdcVisit.date}`} title="NSCDC Private Guard Companies department visit" lead={nscdcVisit.summary} />
             <Reveal delay={0.1} className="mt-8">
               <a href={nscdcVisit.source.url} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">Read the {nscdcVisit.source.publication} report</span>

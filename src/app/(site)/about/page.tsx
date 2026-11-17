@@ -1,6 +1,6 @@
 ﻿import Link from "next/link";
 import { HeroMedia } from "@/components/motion/HeroEnter";
-import { ImageReveal, Reveal } from "@/components/motion/Reveal";
+import { ImageReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { CloseCTA, PageHero, SectionHead } from "@/components/sections/Blocks";
 import { Photo } from "@/components/ui/Photo";
 import { company } from "@/content/company";
@@ -63,15 +63,21 @@ export default function AboutPage() {
             title="Four values our officers work by"
             lead="Our mission asks officers to serve with diligence, respect, intelligence and effectiveness. This is what each one means on a post."
           />
-          <ul className="mt-14 grid gap-px overflow-hidden rounded-[24px] border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v, i) => (
-              <li key={v.title} className="bg-paper p-8">
-                <span className="font-mono text-sm text-red">{String(i + 1).padStart(2, "0")}</span>
+          <Stagger as="ul" className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {values.map((v) => (
+              <StaggerItem as="li" key={v.title} className="card-lift group relative overflow-hidden rounded-[24px] border border-line bg-sand p-8">
+                <span
+                  className="display pointer-events-none absolute -right-3 -top-6 select-none text-[7rem] leading-none text-ink/[0.04] transition-transform duration-700 group-hover:-translate-y-1"
+                  aria-hidden="true"
+                >
+                  {v.title.charAt(0)}
+                </span>
+                <span className="block h-1 w-8 rounded-full bg-red" aria-hidden="true" />
                 <h3 className="display mt-10 text-[1.9rem]">{v.title}</h3>
                 <p className="mt-3 leading-relaxed text-mute">{v.body}</p>
-              </li>
+              </StaggerItem>
             ))}
-          </ul>
+          </Stagger>
         </div>
       </section>
 
@@ -114,7 +120,7 @@ export default function AboutPage() {
             <Reveal delay={0.1} className="mt-8">
               <Link href="/training-standards" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">See our training and standards</span>
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </Reveal>
           </div>
@@ -144,7 +150,7 @@ export default function AboutPage() {
             <Reveal delay={0.1} className="mt-8">
               <Link href="/leadership" className="inline-flex min-h-11 items-center gap-2 font-[560] text-navy">
                 <span className="link-draw">Read her profile</span>
-                <span aria-hidden="true">â†’</span>
+                <span aria-hidden="true">→</span>
               </Link>
             </Reveal>
           </div>
