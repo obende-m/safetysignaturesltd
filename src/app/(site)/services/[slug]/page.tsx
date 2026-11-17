@@ -41,8 +41,8 @@ async function ServiceContent({ params }: { params: Promise<{ slug: string }> })
   return (
     <>
       {/* Hero */}
-      <section className="px-2 pt-[var(--nav-h)] md:px-3">
-        <div className="on-dark relative isolate overflow-hidden rounded-[28px] bg-navy-deep text-white">
+      <section className="pt-[var(--nav-h)] md:px-3">
+        <div className="on-dark relative isolate overflow-hidden bg-navy-deep text-white md:rounded-[28px]">
         <div
           className="pointer-events-none absolute -right-32 -top-48 -z-10 h-[520px] w-[620px] rounded-full bg-navy blur-[110px]"
           aria-hidden="true"

@@ -53,8 +53,8 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section className="px-2 pt-[var(--nav-h)] md:px-3">
-        <div className="on-dark relative isolate overflow-hidden rounded-[28px] bg-navy-deep text-white">
+      <section className="pt-[var(--nav-h)] md:px-3">
+        <div className="on-dark relative isolate overflow-hidden bg-navy-deep text-white md:rounded-[28px]">
           <div className="pointer-events-none absolute -right-40 -top-40 -z-10 h-[520px] w-[520px] rounded-full bg-navy blur-[110px]" aria-hidden="true" />
           <div className="pointer-events-none absolute -bottom-52 left-10 -z-10 h-[360px] w-[360px] rounded-full bg-red/30 blur-[120px]" aria-hidden="true" />
           <div className="grid-lines pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />

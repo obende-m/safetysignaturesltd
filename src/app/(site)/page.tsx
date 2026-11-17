@@ -40,8 +40,8 @@ export default async function HomePage() {
   return (
     <>
       {/* 1. Hero: full-bleed photograph, headline over it, key facts along the bottom */}
-      <section className="px-2 pt-[var(--nav-h)] md:px-3">
-        <div className="on-dark relative isolate flex min-h-[calc(100svh-var(--nav-h)-8px)] flex-col overflow-hidden rounded-[28px] bg-ink text-white md:min-h-[calc(100svh-var(--nav-h)-12px)]">
+      <section className="pt-[var(--nav-h)] md:px-3">
+        <div className="on-dark relative isolate flex min-h-[calc(100svh-var(--nav-h))] flex-col overflow-hidden bg-ink text-white md:min-h-[calc(100svh-var(--nav-h)-12px)] md:rounded-[28px]">
           <HeroBackdrop className="absolute inset-0 -z-20">
             <Photo name="guardsFormation" sizes="100vw" priority quality={90} />
           </HeroBackdrop>

@@ -31,10 +31,13 @@
 }
 
 :root {
-  --nav-h: 76px;
+  --nav-h: 64px;
   --gutter: clamp(16px, 4vw, 48px);
   --wrap: 1280px;
   color-scheme: light;
+}
+@media (min-width: 1024px) {
+  :root { --nav-h: 76px; }
 }
 
 html {
