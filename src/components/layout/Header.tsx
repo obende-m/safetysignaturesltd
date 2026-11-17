@@ -73,10 +73,14 @@ export function Header() {
 
   return (
     <header
+      // No backdrop blur while the mobile menu is open: a backdrop-filter makes the header the
+      // containing block for its fixed children, which would squash the full-screen menu to 0px.
       className={`fixed inset-x-0 top-0 z-50 text-white transition-[background-color,box-shadow] duration-500 ${
-        scrolled || open || mobileOpen
-          ? "bg-navy-deep/95 shadow-[0_14px_34px_-20px_rgba(5,12,35,0.7)] backdrop-blur-xl"
-          : "bg-navy-deep"
+        mobileOpen
+          ? "bg-navy-deep"
+          : scrolled || open
+            ? "bg-navy-deep/95 shadow-[0_14px_34px_-20px_rgba(5,12,35,0.7)] backdrop-blur-xl"
+            : "bg-navy-deep"
       }`}
     >
       {/* Thin brand stripe along the top edge. */}
