@@ -86,7 +86,7 @@ export function Header() {
       {/* Thin brand stripe along the top edge. */}
       <div className="h-[3px] bg-gradient-to-r from-red via-red to-navy" aria-hidden="true" />
       <div className="wrap flex h-[calc(var(--nav-h)-3px)] items-center justify-between gap-6">
-        <Logo priority chip width={112} imgClassName="w-[88px] lg:w-[112px]" />
+        <Logo priority chip mobileOnDark width={112} imgClassName="w-[104px] lg:w-[112px]" />
 
         <nav aria-label="Main" className="hidden lg:block" onMouseLeave={scheduleClose}>
           <ul className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.06] p-1">
